@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './src/*.vue',
+    './src/**/*.vue',
     './components/**/*.{html,ts,vue}',
     './pages/**/*.{html,ts,vue}',
     './index.html',
@@ -9,6 +9,8 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
 

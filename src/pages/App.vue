@@ -1,20 +1,32 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
+const titulo = ref('')
+const el = ref<HTMLElement | null>(null)
+import Componente from "@/components/PrimeiroComponente/Componente.vue"
+import CustomInput from "@/components/CustomInput.vue";
+import Alerta from "@/components/PrimeiroComponente/Alerta.vue"
 
-import { ref } from "vue"
 
-import Post from '@/components/TrabalhandoComSlots/Post.vue'
-
-const titulo = ref('Esse é um título dinânmico')
+onMounted(() => {
+  console.log(el)
+});
 </script>
 
 <template>
-  <section class="bg-gray-950 font-thin text-gray-300">
-    <!-- <Post :tituloDinamico="titulo" tituloStatico="Titulo estático" id="123123"/> -->
-    <Post>
-      <!-- <template v-slot:header>{{titulo}}</template>  -->
-      <template #header>{{ titulo}}</template>
-    </Post>
-  </section>  
+  <section class="w-screen h-screen bg-gray-200 p-2" ref="el">
+    <Alerta ref="alert"> 
+      <template #header>
+        Titulo de erro
+      </template>
+      <template v-slot:conteudo>Eesse é o conteudo do erro</template>
+    </Alerta>
+   <Componente subtitulo="subtitulo" :titulo="titulo" @clicou="(e)=> console.log(e)">
+   <CustomInput  v-model="titulo"/>
+    
+  </Componente>
+
+    
+    </section>  
 </template>
 
 
